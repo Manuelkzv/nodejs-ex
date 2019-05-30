@@ -120,6 +120,17 @@ app.get('/pruebaGET', function (req, res) {
   }
 });
 
+app.get('/pruebaGET/:dato', function (req, res) {
+  if (!db) {
+    initDb(function(err){});
+  }
+  if (db) {
+    res.send(req.params.dato);
+  } else {
+    res.send('error');
+  }
+});
+
 // error handling
 app.use(function(err, req, res, next){
   console.error(err.stack);
