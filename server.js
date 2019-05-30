@@ -2,7 +2,7 @@
 var express = require('express'),
     app     = express(),
     morgan  = require('morgan');
-    
+
 Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
@@ -24,7 +24,7 @@ if (mongoURL == null) {
     mongoPassword = process.env[mongoServiceName + '_PASSWORD'];
     mongoUser = process.env[mongoServiceName + '_USER'];
 
-  // If using env vars from secret from service binding  
+  // If using env vars from secret from service binding
   } else if (process.env.database_name) {
     mongoDatabase = process.env.database_name;
     mongoPassword = process.env.password;
@@ -106,6 +106,17 @@ app.get('/pagecount', function (req, res) {
     });
   } else {
     res.send('{ pageCount: -1 }');
+  }
+});
+
+app.get('/pruebaGET', function (req, res) {
+  if (!db) {
+    initDb(function(err){});
+  }
+  if (db) {
+    res.send('OK mikey');
+  } else {
+    res.send('error');
   }
 });
 
