@@ -3,7 +3,7 @@
 module.exports = (app) =>{
 
     //Test
-    app.get('/testRuta', sfunction (req, res) {
+    app.get('/testRuta', function (req, res) {
       res.send('Ruta lista');
     });
 
